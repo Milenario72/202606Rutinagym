@@ -2,748 +2,629 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Plan de Fitness - App Mode & Videos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Fitness de 3 Días - Imprimible</title>
     <style>
-        :root {
-            --primary: #1a365d;
-            --secondary: #2b6cb0;
-            --accent: #3182ce;
-            --bg-color: #f7fafc;
-            --text-main: #2d3748;
-            --text-muted: #718096;
-            --border: #e2e8f0;
-        }
-
         *, *::before, *::after {
             box-sizing: border-box;
         }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            color: var(--text-main);
-            line-height: 1.6;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+            color: #2d3748;
+            line-height: 1.5;
             margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* BARRA DE NAVEGACIÓN */
-        .navbar {
-            position: sticky;
-            top: 0;
-            background-color: var(--primary);
-            z-index: 1000;
-            display: flex;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            padding: 10px 15px;
-            gap: 8px;
-        }
-        
-        .navbar::-webkit-scrollbar { display: none; }
-        .navbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            padding: 10px 16px;
-            border-radius: 20px;
-            white-space: nowrap;
-            background-color: rgba(255,255,255,0.1);
-            transition: all 0.2s ease;
-        }
-
-        .navbar a:hover, .navbar a:active {
-            background-color: var(--accent);
-            transform: scale(1.05);
-        }
-
-        /* CONTENEDOR PRINCIPAL */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
             padding: 20px;
             background-color: #ffffff;
-            min-height: 100vh;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05);
         }
-
-        section {
-            padding-top: 20px;
-            margin-bottom: 40px;
-            scroll-margin-top: 80px;
+        .container {
+            max-width: 1150px;
+            margin: 0 auto;
         }
         
+        /* Encabezado Principal */
         .header {
-            border-bottom: 3px solid var(--secondary);
-            padding-bottom: 15px;
-            margin-bottom: 25px;
+            border-bottom: 3px solid #2b6cb0;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
         }
         .header h1 {
-            color: var(--primary);
-            margin: 0 0 8px 0;
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            font-weight: 800;
-            letter-spacing: -0.5px;
+            color: #1a365d;
+            margin: 0 0 6px 0;
+            font-size: 24pt;
+            font-weight: 700;
         }
         .header p {
             margin: 0;
-            color: var(--text-muted);
-            font-size: 1.1rem;
+            color: #4a5568;
+            font-size: 11pt;
         }
         
-        /* Tarjetas */
-        .grid-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
+        /* Bloque de Reglas Rápidas */
+        .rules-container {
+            display: table;
+            width: 100%;
+            margin-bottom: 25px;
+            border-collapse: separate;
+            border-spacing: 12px 0;
         }
-        .card {
-            background-color: #f8fafc;
-            border: 1px solid var(--border);
-            border-top: 4px solid var(--secondary);
-            padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        .rule-box {
+            display: table-cell;
+            background-color: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-top: 4px solid #3182ce;
+            padding: 12px 15px;
+            border-radius: 4px;
+            width: 33.33%;
+            vertical-align: top;
         }
-        .card.nutrition { border-top-color: #38a169; }
-        .card h3 {
-            margin: 0 0 10px 0;
-            color: var(--primary);
-            font-size: 1.1rem;
+        .rule-box h3 {
+            margin: 0 0 6px 0;
+            color: #2c5282;
+            font-size: 11pt;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        .card p, .card ul {
+        .rule-box p {
             margin: 0;
-            font-size: 0.95rem;
-            color: var(--text-main);
+            font-size: 9.5pt;
+            color: #4a5568;
         }
-        .card ul { padding-left: 20px; margin-top: 10px;}
-        .card li { margin-bottom: 5px; }
 
+        /* Secciones de Días */
+        .day-section {
+            margin-bottom: 35px;
+            page-break-inside: avoid;
+        }
         .day-title {
-            color: var(--secondary);
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 0 0 5px 0;
-            padding-bottom: 8px;
-            border-bottom: 2px solid var(--border);
+            color: #2b6cb0;
+            font-size: 15pt;
+            font-weight: 600;
+            margin: 0 0 12px 0;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #e2e8f0;
         }
         .day-meta {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            margin-bottom: 15px;
+            font-size: 10pt;
+            color: #718096;
+            margin-bottom: 10px;
             font-style: italic;
         }
         
-        /* Tablas Responsive */
-        .table-responsive {
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            margin-bottom: 15px;
-            background: #fff;
-        }
-
+        /* Tablas de Ejercicios */
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 900px; /* Aumentado para la nueva columna de vídeo */
-            font-size: 0.95rem;
+            margin-bottom: 10px;
+            font-size: 9.5pt;
         }
         th, td {
-            padding: 12px 10px;
+            border: 1px solid #cbd5e0;
+            padding: 8px 10px;
             vertical-align: middle;
-            border-bottom: 1px solid var(--border);
-            border-right: 1px solid var(--border);
         }
         th {
-            background-color: var(--secondary);
+            background-color: #2b6cb0;
             color: #ffffff;
             font-weight: 600;
             text-transform: uppercase;
-            font-size: 0.85rem;
+            font-size: 8.5pt;
             letter-spacing: 0.5px;
             text-align: center;
         }
         
-        tr:last-child td { border-bottom: none; }
-        tr:nth-child(even) td { background-color: #f8fafc; }
+        /* Estilos de Columnas Específicas */
+        .col-chk { width: 30px; text-align: center; }
+        .col-block { width: 100px; font-weight: 600; color: #4a5568; background-color: #f7fafc; text-align: left; }
+        .col-ex { width: 180px; font-weight: 600; color: #1a365d; text-align: left; }
+        .col-img { width: 90px; text-align: center; padding: 4px; }
+        .col-sets { width: 55px; text-align: center; }
+        .col-reps { width: 100px; text-align: center; }
+        .col-rest { width: 100px; text-align: center; font-weight: 600; color: #2d3748; }
+        .col-note { width: auto; font-size: 9pt; text-align: left; }
         
-        /* Columnas */
-        .col-chk { width: 40px; text-align: center; }
-        .col-block { width: 110px; font-weight: 600; color: var(--text-muted); }
-        .col-ex { width: 180px; font-weight: 700; color: var(--primary); }
-        .col-img { width: 90px; text-align: center; }
-        .col-vid { width: 70px; text-align: center; } /* Nueva columna de vídeo */
-        .col-sets { width: 60px; text-align: center; font-weight: 600;}
-        .col-reps { width: 110px; text-align: center; }
-        .col-rest { width: 110px; text-align: center; font-weight: 600; color: var(--text-main); }
-        .col-note { width: auto; font-size: 0.85rem; }
-
+        tr:nth-child(even) td {
+            background-color: #fcfdfd;
+        }
+        
+        /* Checkbox imprimible */
         .chk-box {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #cbd5e0;
-            border-radius: 4px;
+            width: 13px;
+            height: 13px;
+            border: 1px solid #a0aec0;
+            border-radius: 2px;
             margin: auto;
-            background: #fff;
         }
-
-        /* Botón YouTube */
-        .yt-btn {
-            background-color: #ff0000;
-            color: white;
-            text-decoration: none;
-            padding: 6px 10px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            display: inline-block;
-            transition: background 0.2s;
-        }
-        .yt-btn:hover { background-color: #cc0000; }
-
-        /* Guía Visual - Badges */
+        
+        /* Ilustraciones/Iconos de marcador de posición (Guía Visual) */
         .ex-icon {
             display: inline-block;
-            width: 100%;
-            padding: 4px 0;
-            font-size: 0.75rem;
-            font-weight: 700;
+            width: 75px;
+            height: 35px;
+            border: 1px solid #cbd5e0;
+            font-size: 7.5pt;
+            font-weight: 600;
+            line-height: 35px;
             text-align: center;
-            border-radius: 6px;
-            border: 1px solid transparent;
+            border-radius: 4px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
-        .cat-cardio    { background: #e0f2fe; color: #0369a1; border-color: #bae6fd; }
-        .cat-movilidad { background: #f0fdf4; color: #15803d; border-color: #bbf7d0; }
-        .cat-pectoral  { background: #fee2e2; color: #b91c1c; border-color: #fecaca; }
-        .cat-espalda   { background: #ccfbf1; color: #0f766e; border-color: #99f6e4; }
-        .cat-hombro    { background: #ffedd5; color: #c2410c; border-color: #fed7aa; }
-        .cat-brazo     { background: #f3e8ff; color: #7e22ce; border-color: #e9d5ff; }
-        .cat-pierna    { background: #fce7f3; color: #be185d; border-color: #fbcfe8; }
-        .cat-core      { background: #fef9c3; color: #a16207; border-color: #fef08a; }
-        .cat-hiit      { background: #ffe4e6; color: #be123c; border-color: #fecdd3; }
-        .cat-relax     { background: #f3f4f6; color: #4b5563; border-color: #e5e7eb; }
+        /* Código de Colores por Categoría Muscular */
+        .cat-cardio    { background-color: #e0f2fe; color: #0369a1; border-color: #bae6fd; }
+        .cat-movilidad { background-color: #f0fdf4; color: #15803d; border-color: #bbf7d0; }
+        .cat-pectoral  { background-color: #fee2e2; color: #b91c1c; border-color: #fecaca; }
+        .cat-espalda   { background-color: #ccfbf1; color: #0f766e; border-color: #99f6e4; }
+        .cat-hombro    { background-color: #ffedd5; color: #c2410c; border-color: #fed7aa; }
+        .cat-brazo     { background-color: #f3e8ff; color: #7e22ce; border-color: #e9d5ff; }
+        .cat-pierna    { background-color: #fce7f3; color: #be185d; border-color: #fbcfe8; }
+        .cat-core      { background-color: #fef9c3; color: #a16207; border-color: #fef08a; }
+        .cat-hiit      { background-color: #ffe4e6; color: #be123c; border-color: #fecdd3; }
+        .cat-relax     { background-color: #f3f4f6; color: #4b5563; border-color: #e5e7eb; }
 
-        @media print {
-            body { background: #fff; }
-            .navbar { display: none !important; }
-            .container { padding: 0; box-shadow: none; max-width: 100%; }
-            section { scroll-margin-top: 0; padding-top: 0; break-inside: avoid; }
-            .table-responsive { overflow: visible; border: none; }
-            table { min-width: 100%; }
-            th { background-color: var(--secondary) !important; color: white !important; -webkit-print-color-adjust: exact; print-color-adjust: exact;}
-            .ex-icon, .yt-btn { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            .col-vid { display: none; } /* Oculta la columna de vídeos al imprimir en papel */
+        /* Tabla de Progresión */
+        .progression-section {
+            margin-top: 25px;
+            page-break-inside: avoid;
+        }
+        .progression-table th {
+            background-color: #4a5568;
+            text-align: left;
+        }
+        .progression-table td {
+            padding: 10px 12px;
+            text-align: left;
         }
         
-        @media (max-width: 768px) {
-            .container { padding: 10px; }
-            .navbar a { font-size: 0.85rem; padding: 8px 12px; }
-            th, td { padding: 10px 8px; }
-            .ex-icon { font-size: 0.7rem; }
+        /* Nota de seguridad inferior */
+        .footer-note {
+            margin-top: 30px;
+            padding: 12px;
+            background-color: #fffaf0;
+            border: 1px solid #feebc8;
+            border-left: 4px solid #dd6b20;
+            border-radius: 4px;
+            font-size: 9.5pt;
+            color: #c05621;
+        }
+        
+        /* Optimización para Impresión */
+        @media print {
+            body {
+                padding: 0;
+                color: #000000;
+                font-size: 9pt;
+            }
+            .container {
+                max-width: 100%;
+            }
+            .rule-box {
+                background-color: #ffffff !important;
+                border: 1px solid #cbd5e0 !important;
+                border-top: 4px solid #2b6cb0 !important;
+            }
+            th {
+                background-color: #2b6cb0 !important;
+                color: #ffffff !important;
+            }
+            .progression-table th {
+                background-color: #4a5568 !important;
+            }
+            tr:nth-child(even) td {
+                background-color: #f7fafc !important;
+            }
+            .footer-note {
+                background-color: #ffffff !important;
+                border: 1px solid #cbd5e0 !important;
+                border-left: 4px solid #dd6b20 !important;
+            }
         }
     </style>
 </head>
 <body>
 
-<!-- BARRA DE NAVEGACIÓN -->
-<nav class="navbar">
-    <a href="#home">🏠 Inicio</a>
-    <a href="#recomendaciones">💡 Reglas</a>
-    <a href="#lunes">💪 Lunes</a>
-    <a href="#miercoles">🦵 Miércoles</a>
-    <a href="#viernes">🔥 Viernes</a>
-    <a href="#progresion">📈 Progresión</a>
-    <a href="#nutricion">🥑 Nutrición</a>
-</nav>
-
 <div class="container">
 
-    <!-- HOME -->
-    <section id="home">
-        <div class="header">
-            <h1>Plan de Entrenamiento 3 Días</h1>
-            <p>Objetivo: Pérdida de grasa, definición muscular y protección articular.</p>
-        </div>
-    </section>
+    <!-- Encabezado -->
+    <div class="header">
+        <h1>Plan de Entrenamiento de 3 Días</h1>
+        <p>Orientación: Pérdida de grasa, definición muscular y protección articular (Duración: 50–60 min)</p>
+    </div>
 
-    <!-- RECOMENDACIONES -->
-    <section id="recomendaciones">
-        <h2 class="day-title">Recomendaciones y Reglas</h2>
-        <div class="grid-cards">
-            <div class="card">
-                <h3>⚠️ Dolor Articular (Máx 3/10)</h3>
-                <p>Si el dolor en la rodilla supera un nivel 3/10 o empeora al día siguiente, reduce el rango de movimiento, baja la carga o cambia el ejercicio. Prioriza isométricos.</p>
-            </div>
-            <div class="card">
-                <h3>⏱️ Descanso entre Series</h3>
-                <p><strong>Principales:</strong> 90–120 segundos.<br><strong>Accesorios/Brazos:</strong> 45–90 segundos.<br><strong>Superseries:</strong> 0s entre ejercicios, descanso al terminar ambos.</p>
-            </div>
-            <div class="card">
-                <h3>🔄 Transiciones entre Ejercicios</h3>
-                <p>Al terminar todas las series de un ejercicio, tómate entre <strong>1.5 y 2 minutos</strong> para recoger tu material, moverte a la siguiente máquina y prepararte mental y físicamente.</p>
-            </div>
+    <!-- Reglas Rápidas -->
+    <div class="rules-container">
+        <div class="rule-box">
+            <h3>Rodilla (Máx 3/10)</h3>
+            <p>Si el dolor supera 3/10 o empeora al día siguiente, reduce el rango de movimiento, baja la carga o sustituye el ejercicio.</p>
         </div>
-    </section>
+        <div class="rule-box">
+            <h3>Tiempos de Descanso</h3>
+            <p><strong>Principales:</strong> 90–120 segundos.<br><strong>Accesorios / Brazos:</strong> 45–90 segundos para asegurar recuperación óptima.</p>
+        </div>
+        <div class="rule-box">
+            <h3>Sobrecarga Progresiva</h3>
+            <p>Aumenta la carga ligeramente cuando completes el rango alto de repeticiones con una técnica estricta.</p>
+        </div>
+    </div>
 
     <!-- LUNES -->
-    <section id="lunes">
+    <div class="day-section">
         <div class="day-title">Lunes — Tren Superior A + Brazos + Antebrazo</div>
-        <div class="day-meta">Tiempo estimado: 55–60 min | Enfoque: Fuerza progresiva superior y agarre</div>
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th class="col-chk">✓</th>
-                        <th class="col-block">Bloque</th>
-                        <th class="col-ex">Ejercicio</th>
-                        <th class="col-vid">Video</th>
-                        <th class="col-img">Músculo</th>
-                        <th class="col-sets">Series</th>
-                        <th class="col-reps">Reps/Tiempo</th>
-                        <th class="col-rest">Desc. Series</th>
-                        <th class="col-note">Técnica</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Calentamiento</td>
-                        <td class="col-ex">Elíptica suave</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=tecnica+eliptica+gimnasio" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-cardio">Cardio</span></td>
-                        <td class="col-sets">1</td>
-                        <td class="col-reps">3 min</td>
-                        <td class="col-rest">—</td>
-                        <td class="col-note">Ritmo fácil y constante.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Calentamiento</td>
-                        <td class="col-ex">Rotaciones controladas</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=movilidad+articular+calentamiento" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-movilidad">Movilidad</span></td>
-                        <td class="col-sets">1</td>
-                        <td class="col-reps">2 min</td>
-                        <td class="col-rest">—</td>
-                        <td class="col-note">Hombros, muñecas y cadera.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Principal</td>
-                        <td class="col-ex">Press banca plano</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=tecnica+press+banca+plano" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-pectoral">Pectoral</span></td>
-                        <td class="col-sets">3</td>
-                        <td class="col-reps">8–10</td>
-                        <td class="col-rest">90–120 s</td>
-                        <td class="col-note">Bajada de 3 segundos; empuje firme.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Principal</td>
-                        <td class="col-ex">Remo polea baja</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=tecnica+remo+polea+baja" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-espalda">Espalda</span></td>
-                        <td class="col-sets">3</td>
-                        <td class="col-reps">10–12</td>
-                        <td class="col-rest">90 s</td>
-                        <td class="col-note">Retracción escapular al final del recorrido.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Principal</td>
-                        <td class="col-ex">Press militar sentado</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=tecnica+press+militar+sentado+mancuernas" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-hombro">Hombro</span></td>
-                        <td class="col-sets">3</td>
-                        <td class="col-reps">8–10</td>
-                        <td class="col-rest">90 s</td>
-                        <td class="col-note">Espalda bien apoyada en el respaldo.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Principal</td>
-                        <td class="col-ex">Jalón al pecho</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=tecnica+jalon+al+pecho" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-espalda">Dorsal</span></td>
-                        <td class="col-sets">3</td>
-                        <td class="col-reps">10–12</td>
-                        <td class="col-rest">60–90 s</td>
-                        <td class="col-note">Llevar al esternón, no tras nuca.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Brazos</td>
-                        <td class="col-ex">Curl bíceps</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=tecnica+curl+de+biceps+mancuernas" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-brazo">Bíceps</span></td>
-                        <td class="col-sets">2</td>
-                        <td class="col-reps">12–15</td>
-                        <td class="col-rest">Superserie</td>
-                        <td class="col-note">Ejecutar sin pausa seguido de tríceps.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Brazos</td>
-                        <td class="col-ex">Extensión tríceps polea</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=tecnica+extension+triceps+polea" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-brazo">Tríceps</span></td>
-                        <td class="col-sets">2</td>
-                        <td class="col-reps">12–15</td>
-                        <td class="col-rest">60 s</td>
-                        <td class="col-note">Codos fijos. Descanso tras completar ambos.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Antebrazo</td>
-                        <td class="col-ex">Curl martillo</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=tecnica+curl+martillo" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-brazo">Brazo</span></td>
-                        <td class="col-sets">2</td>
-                        <td class="col-reps">10–12</td>
-                        <td class="col-rest">Superserie</td>
-                        <td class="col-note">Superserie de agarre.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Antebrazo</td>
-                        <td class="col-ex">Pronación/supinación</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=pronacion+supinacion+antebrazo+mancuerna" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-brazo">Muñeca</span></td>
-                        <td class="col-sets">2</td>
-                        <td class="col-reps">10–12</td>
-                        <td class="col-rest">45–60 s</td>
-                        <td class="col-note">Mancuerna ligera. Descanso tras completar ambos.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Vuelta Calma</td>
-                        <td class="col-ex">Estiramientos suaves</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=estiramientos+tren+superior" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-relax">Relax</span></td>
-                        <td class="col-sets">1</td>
-                        <td class="col-reps">5 min</td>
-                        <td class="col-rest">—</td>
-                        <td class="col-note">Pectoral, dorsal, tríceps y antebrazos.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
+        <div class="day-meta">Tiempo total estimado: 55–60 min | Enfoque: Fuerza progresiva superior y agarre</div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-chk">✓</th>
+                    <th class="col-block">Bloque</th>
+                    <th class="col-ex">Ejercicio</th>
+                    <th class="col-img">Guía Visual</th>
+                    <th class="col-sets">Series</th>
+                    <th class="col-reps">Reps / Tiempo</th>
+                    <th class="col-rest">Descanso (Series)</th>
+                    <th class="col-note">Nota Técnica</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Calentamiento</td>
+                    <td class="col-ex">Elíptica suave</td>
+                    <td class="col-img"><span class="ex-icon cat-cardio">Cardio</span></td>
+                    <td class="col-sets">1</td>
+                    <td class="col-reps">3 min</td>
+                    <td class="col-rest">—</td>
+                    <td class="col-note">Ritmo fácil y constante.</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Calentamiento</td>
+                    <td class="col-ex">Rotaciones controladas</td>
+                    <td class="col-img"><span class="ex-icon cat-movilidad">Movilidad</span></td>
+                    <td class="col-sets">1</td>
+                    <td class="col-reps">2 min</td>
+                    <td class="col-rest">—</td>
+                    <td class="col-note">Hombros, muñecas y cadera.</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Principal</td>
+                    <td class="col-ex">Press banca plano</td>
+                    <td class="col-img"><span class="ex-icon cat-pectoral">Pectoral</span></td>
+                    <td class="col-sets">3</td>
+                    <td class="col-reps">8–10</td>
+                    <td class="col-rest">90–120 s</td>
+                    <td class="col-note">Bajada de 3 segundos; empuje firme.</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Principal</td>
+                    <td class="col-ex">Remo polea baja</td>
+                    <td class="col-img"><span class="ex-icon cat-espalda">Espalda</span></td>
+                    <td class="col-sets">3</td>
+                    <td class="col-reps">10–12</td>
+                    <td class="col-rest">90 s</td>
+                    <td class="col-note">Enfoque en la retracción escapular al final del recorrido.</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Principal</td>
+                    <td class="col-ex">Press militar sentado</td>
+                    <td class="col-img"><span class="ex-icon cat-hombro">Hombro</span></td>
+                    <td class="col-sets">3</td>
+                    <td class="col-reps">8–10</td>
+                    <td class="col-rest">90 s</td>
+                    <td class="col-note">Espalda bien apoyada en el respaldo.</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Principal</td>
+                    <td class="col-ex">Jalón al pecho</td>
+                    <td class="col-img"><span class="ex-icon cat-espalda">Dorsal</span></td>
+                    <td class="col-sets">3</td>
+                    <td class="col-reps">10–12</td>
+                    <td class="col-rest">60–90 s</td>
+                    <td class="col-note">Llevar al esternón, no tras nuca.</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Brazos</td>
+                    <td class="col-ex">Curl bíceps</td>
+                    <td class="col-img"><span class="ex-icon cat-brazo">Bíceps</span></td>
+                    <td class="col-sets">2</td>
+                    <td class="col-reps">12–15</td>
+                    <td class="col-rest">Superserie</td>
+                    <td class="col-note">Ejecutar sin pausa seguido de tríceps.</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Brazos</td>
+                    <td class="col-ex">Extensión tríceps polea</td>
+                    <td class="col-img"><span class="ex-icon cat-brazo">Tríceps</span></td>
+                    <td class="col-sets">2</td>
+                    <td class="col-reps">12–15</td>
+                    <td class="col-rest">60 s</td>
+                    <td class="col-note">Codos fijos. Descanso tras completar ambos.</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Antebrazo</td>
+                    <td class="col-ex">Curl martillo</td>
+                    <td class="col-img"><span class="ex-icon cat-brazo">Brazo</span></td>
+                    <td class="col-sets">2</td>
+                    <td class="col-reps">10–12</td>
+                    <td class="col-rest">Superserie</td>
+                    <td class="col-note">Superserie de agarre.</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Antebrazo</td>
+                    <td class="col-ex">Pronación / supinación</td>
+                    <td class="col-img"><span class="ex-icon cat-brazo">Muñeca</span></td>
+                    <td class="col-sets">2</td>
+                    <td class="col-reps">10–12</td>
+                    <td class="col-rest">45–60 s</td>
+                    <td class="col-note">Mancuerna ligera. Descanso tras completar ambos.</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Vuelta Calma</td>
+                    <td class="col-ex">Estiramientos suaves</td>
+                    <td class="col-img"><span class="ex-icon cat-relax">Relax</span></td>
+                    <td class="col-sets">1</td>
+                    <td class="col-reps">5 min</td>
+                    <td class="col-rest">—</td>
+                    <td class="col-note">Pectoral, dorsal, tríceps y antebrazos.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <!-- MIÉRCOLES -->
-    <section id="miercoles">
+    <div class="day-section">
         <div class="day-title">Miércoles — Tren Inferior Anti-Impacto + Core</div>
-        <div class="day-meta">Tiempo estimado: 50–55 min | Enfoque: Estabilidad de rodilla, cadena posterior y abdomen</div>
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th class="col-chk">✓</th>
-                        <th class="col-block">Bloque</th>
-                        <th class="col-ex">Ejercicio</th>
-                        <th class="col-vid">Video</th>
-                        <th class="col-img">Músculo</th>
-                        <th class="col-sets">Series</th>
-                        <th class="col-reps">Reps/Tiempo</th>
-                        <th class="col-rest">Desc. Series</th>
-                        <th class="col-note">Técnica</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Calentamiento</td>
-                        <td class="col-ex">Elíptica suave</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=tecnica+eliptica+gimnasio" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-cardio">Cardio</span></td>
-                        <td class="col-sets">1</td>
-                        <td class="col-reps">3 min</td>
-                        <td class="col-rest">—</td>
-                        <td class="col-note">Bajo impacto articular.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Calentamiento</td>
-                        <td class="col-ex">Rotaciones controladas</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=movilidad+articular+calentamiento" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-movilidad">Movilidad</span></td>
-                        <td class="col-sets">1</td>
-                        <td class="col-reps">2 min</td>
-                        <td class="col-rest">—</td>
-                        <td class="col-note">Cadera, hombros y muñecas.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Principal</td>
-                        <td class="col-ex">Peso muerto rumano</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=tecnica+peso+muerto+rumano" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-pierna">Isquios</span></td>
-                        <td class="col-sets">3</td>
-                        <td class="col-reps">10–12</td>
-                        <td class="col-rest">90 s</td>
-                        <td class="col-note">Bisagra de cadera, rodilla suave.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Principal</td>
-                        <td class="col-ex">Puente de glúteo</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=tecnica+puente+de+gluteo" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-pierna">Glúteos</span></td>
-                        <td class="col-sets">3</td>
-                        <td class="col-reps">12–15</td>
-                        <td class="col-rest">60 s</td>
-                        <td class="col-note">Aguanta 2 segundos arriba por rep.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Principal</td>
-                        <td class="col-ex">Wall sit</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=tecnica+wall+sit+sentadilla+isometrica" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-pierna">Cuádriceps</span></td>
-                        <td class="col-sets">3</td>
-                        <td class="col-reps">30–45 s</td>
-                        <td class="col-rest">90 s</td>
-                        <td class="col-note">Rodillas a 60–70° (evitar 90° si molesta).</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Core</td>
-                        <td class="col-ex">Plancha abdominal</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=tecnica+plancha+abdominal+plank" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-core">Core</span></td>
-                        <td class="col-sets">3</td>
-                        <td class="col-reps">30–45 s</td>
-                        <td class="col-rest">60 s</td>
-                        <td class="col-note">Mantener cadera neutra.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Core</td>
-                        <td class="col-ex">Pallof press</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=tecnica+pallof+press+polea" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-core">Abdomen</span></td>
-                        <td class="col-sets">2</td>
-                        <td class="col-reps">10 por lado</td>
-                        <td class="col-rest">45 s</td>
-                        <td class="col-note">Antirrotación; torso totalmente estable.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Vuelta Calma</td>
-                        <td class="col-ex">Estiramientos suaves</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=estiramientos+tren+inferior" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-relax">Relax</span></td>
-                        <td class="col-sets">1</td>
-                        <td class="col-reps">5 min</td>
-                        <td class="col-rest">—</td>
-                        <td class="col-note">Glúteos y cuádriceps de forma controlada.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
+        <div class="day-meta">Tiempo total estimado: 50–55 min | Enfoque: Estabilidad de rodilla, cadena posterior y abdomen</div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-chk">✓</th>
+                    <th class="col-block">Bloque</th>
+                    <th class="col-ex">Ejercicio</th>
+                    <th class="col-img">Guía Visual</th>
+                    <th class="col-sets">Series</th>
+                    <th class="col-reps">Reps / Tiempo</th>
+                    <th class="col-rest">Descanso (Series)</th>
+                    <th class="col-note">Nota Técnica</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Calentamiento</td>
+                    <td class="col-ex">Elíptica suave</td>
+                    <td class="col-img"><span class="ex-icon cat-cardio">Cardio</span></td>
+                    <td class="col-sets">1</td>
+                    <td class="col-reps">3 min</td>
+                    <td class="col-rest">—</td>
+                    <td class="col-note">Bajo impacto articular.</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Calentamiento</td>
+                    <td class="col-ex">Rotaciones controladas</td>
+                    <td class="col-img"><span class="ex-icon cat-movilidad">Movilidad</span></td>
+                    <td class="col-sets">1</td>
+                    <td class="col-reps">2 min</td>
+                    <td class="col-rest">—</td>
+                    <td class="col-note">Cadera, hombros y muñecas.</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Principal</td>
+                    <td class="col-ex">Peso muerto rumano</td>
+                    <td class="col-img"><span class="ex-icon cat-pierna">Isquios</span></td>
+                    <td class="col-sets">3</td>
+                    <td class="col-reps">10–12</td>
+                    <td class="col-rest">90 s</td>
+                    <td class="col-note">Bisagra de cadera, rodilla suave.</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Principal</td>
+                    <td class="col-ex">Puente de glúteo</td>
+                    <td class="col-img"><span class="ex-icon cat-pierna">Glúteos</span></td>
+                    <td class="col-sets">3</td>
+                    <td class="col-reps">12–15</td>
+                    <td class="col-rest">60 s</td>
+                    <td class="col-note">Aguanta 2 segundos arriba por rep.</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Principal</td>
+                    <td class="col-ex">Wall sit</td>
+                    <td class="col-img"><span class="ex-icon cat-pierna">Cuádriceps</span></td>
+                    <td class="col-sets">3</td>
+                    <td class="col-reps">30–45 s</td>
+                    <td class="col-rest">90 s</td>
+                    <td class="col-note">Rodillas a 60–70° (evitar 90° si molesta).</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Core</td>
+                    <td class="col-ex">Plancha abdominal</td>
+                    <td class="col-img"><span class="ex-icon cat-core">Core</span></td>
+                    <td class="col-sets">3</td>
+                    <td class="col-reps">30–45 s</td>
+                    <td class="col-rest">60 s</td>
+                    <td class="col-note">Mantener cadera neutra.</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Core</td>
+                    <td class="col-ex">Pallof press</td>
+                    <td class="col-img"><span class="ex-icon cat-core">Abdomen</span></td>
+                    <td class="col-sets">2</td>
+                    <td class="col-reps">10 por lado</td>
+                    <td class="col-rest">45 s</td>
+                    <td class="col-note">Antirrotación; torso totalmente estable.</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Vuelta Calma</td>
+                    <td class="col-ex">Estiramientos suaves</td>
+                    <td class="col-img"><span class="ex-icon cat-relax">Relax</span></td>
+                    <td class="col-sets">1</td>
+                    <td class="col-reps">5 min</td>
+                    <td class="col-rest">—</td>
+                    <td class="col-note">Glúteos y cuádriceps de forma controlada.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <!-- VIERNES -->
-    <section id="viernes">
-        <div class="day-title">Viernes — Tren Superior B + HIIT + Antebrazo</div>
-        <div class="day-meta">Tiempo estimado: 55–60 min | Enfoque: Fuerza superior, resistencia metabólica y core</div>
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th class="col-chk">✓</th>
-                        <th class="col-block">Bloque</th>
-                        <th class="col-ex">Ejercicio</th>
-                        <th class="col-vid">Video</th>
-                        <th class="col-img">Músculo</th>
-                        <th class="col-sets">Series</th>
-                        <th class="col-reps">Reps/Tiempo</th>
-                        <th class="col-rest">Desc. Series</th>
-                        <th class="col-note">Técnica</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Calentamiento</td>
-                        <td class="col-ex">Elíptica suave</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=tecnica+eliptica+gimnasio" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-cardio">Cardio</span></td>
-                        <td class="col-sets">1</td>
-                        <td class="col-reps">3 min</td>
-                        <td class="col-rest">—</td>
-                        <td class="col-note">Ritmo cómodo preparatorio.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Calentamiento</td>
-                        <td class="col-ex">Rotaciones controladas</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=movilidad+articular+calentamiento" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-movilidad">Movilidad</span></td>
-                        <td class="col-sets">1</td>
-                        <td class="col-reps">2 min</td>
-                        <td class="col-rest">—</td>
-                        <td class="col-note">Movilidad de hombros y cadera.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Principal</td>
-                        <td class="col-ex">Press inclinado</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=tecnica+press+inclinado+mancuernas" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-pectoral">Pectoral</span></td>
-                        <td class="col-sets">3</td>
-                        <td class="col-reps">8–10</td>
-                        <td class="col-rest">90–120 s</td>
-                        <td class="col-note">Banco a 30–45°.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Principal</td>
-                        <td class="col-ex">Remo a una mano</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=tecnica+remo+a+una+mano+mancuerna" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-espalda">Dorsal</span></td>
-                        <td class="col-sets">3</td>
-                        <td class="col-reps">10 por lado</td>
-                        <td class="col-rest">60–90 s</td>
-                        <td class="col-note">Apoyo estable en el banco.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Principal</td>
-                        <td class="col-ex">Elevaciones laterales</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=tecnica+elevaciones+laterales+plano+escapular" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-hombro">Hombro</span></td>
-                        <td class="col-sets">3</td>
-                        <td class="col-reps">12–15</td>
-                        <td class="col-rest">60 s</td>
-                        <td class="col-note">Movimiento en plano escapular.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Principal</td>
-                        <td class="col-ex">Face pull</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=tecnica+face+pull+polea" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-hombro">Deltoides</span></td>
-                        <td class="col-sets">3</td>
-                        <td class="col-reps">12–15</td>
-                        <td class="col-rest">60 s</td>
-                        <td class="col-note">Tira hacia la cara con control.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Acondic.</td>
-                        <td class="col-ex">Battle rope</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=tecnica+battle+ropes" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-hiit">HIIT</span></td>
-                        <td class="col-sets">6</td>
-                        <td class="col-reps">20 s trabajo</td>
-                        <td class="col-rest">30 s</td>
-                        <td class="col-note">Técnica limpia y explosiva.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Antebrazo (Opc)</td>
-                        <td class="col-ex">Farmer carry</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=tecnica+paseo+del+granjero+farmer+carry" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-brazo">Agarre</span></td>
-                        <td class="col-sets">2</td>
-                        <td class="col-reps">20–30 m</td>
-                        <td class="col-rest">45–60 s</td>
-                        <td class="col-note">Sustituir por agarre estático si no hay espacio.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-chk"><div class="chk-box"></div></td>
-                        <td class="col-block">Vuelta Calma</td>
-                        <td class="col-ex">Estiramientos suaves</td>
-                        <td class="col-vid"><a href="https://www.youtube.com/results?search_query=estiramientos+tren+superior" target="_blank" class="yt-btn">▶️ Ver</a></td>
-                        <td class="col-img"><span class="ex-icon cat-relax">Relax</span></td>
-                        <td class="col-sets">1</td>
-                        <td class="col-reps">5 min</td>
-                        <td class="col-rest">—</td>
-                        <td class="col-note">Hombro, bíceps, tríceps, antebrazo.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
+    <div class="day-section">
+        <div class="day-title">Viernes — Tren Superior B + Acondicionamiento + Antebrazo</div>
+        <div class="day-meta">Tiempo total estimado: 55–60 min | Enfoque: Fuerza superior, resistencia metabólica y core</div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-chk">✓</th>
+                    <th class="col-block">Bloque</th>
+                    <th class="col-ex">Ejercicio</th>
+                    <th class="col-img">Guía Visual</th>
+                    <th class="col-sets">Series</th>
+                    <th class="col-reps">Reps / Tiempo</th>
+                    <th class="col-rest">Descanso (Series)</th>
+                    <th class="col-note">Nota Técnica</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Calentamiento</td>
+                    <td class="col-ex">Elíptica suave</td>
+                    <td class="col-img"><span class="ex-icon cat-cardio">Cardio</span></td>
+                    <td class="col-sets">1</td>
+                    <td class="col-reps">3 min</td>
+                    <td class="col-rest">—</td>
+                    <td class="col-note">Ritmo cómodo preparatorio.</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Calentamiento</td>
+                    <td class="col-ex">Rotaciones controladas</td>
+                    <td class="col-img"><span class="ex-icon cat-movilidad">Movilidad</span></td>
+                    <td class="col-sets">1</td>
+                    <td class="col-reps">2 min</td>
+                    <td class="col-rest">—</td>
+                    <td class="col-note">Movilidad de hombros y cadera.</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Principal</td>
+                    <td class="col-ex">Press inclinado</td>
+                    <td class="col-img"><span class="ex-icon cat-pectoral">Pectoral</span></td>
+                    <td class="col-sets">3</td>
+                    <td class="col-reps">8–10</td>
+                    <td class="col-rest">90–120 s</td>
+                    <td class="col-note">Banco a 30–45°.</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Principal</td>
+                    <td class="col-ex">Remo a una mano</td>
+                    <td class="col-img"><span class="ex-icon cat-espalda">Dorsal</span></td>
+                    <td class="col-sets">3</td>
+                    <td class="col-reps">10 por lado</td>
+                    <td class="col-rest">60–90 s</td>
+                    <td class="col-note">Apoyo estable en el banco.</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Principal</td>
+                    <td class="col-ex">Elevaciones laterales</td>
+                    <td class="col-img"><span class="ex-icon cat-hombro">Hombro</span></td>
+                    <td class="col-sets">3</td>
+                    <td class="col-reps">12–15</td>
+                    <td class="col-rest">60 s</td>
+                    <td class="col-note">Movimiento en plano escapular.</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Principal</td>
+                    <td class="col-ex">Face pull</td>
+                    <td class="col-img"><span class="ex-icon cat-hombro">Deltoides</span></td>
+                    <td class="col-sets">3</td>
+                    <td class="col-reps">12–15</td>
+                    <td class="col-rest">60 s</td>
+                    <td class="col-note">Tira hacia la cara con control.</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Acondic.</td>
+                    <td class="col-ex">Battle rope</td>
+                    <td class="col-img"><span class="ex-icon cat-hiit">HIIT</span></td>
+                    <td class="col-sets">6</td>
+                    <td class="col-reps">20 s trabajo</td>
+                    <td class="col-rest">30 s</td>
+                    <td class="col-note">Técnica limpia y explosiva.</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Antebrazo (Opc)</td>
+                    <td class="col-ex">Farmer carry</td>
+                    <td class="col-img"><span class="ex-icon cat-brazo">Agarre</span></td>
+                    <td class="col-sets">2</td>
+                    <td class="col-reps">20–30 m</td>
+                    <td class="col-rest">45–60 s</td>
+                    <td class="col-note">Sustituir por agarre estático si no hay espacio.</td>
+                </tr>
+                <tr>
+                    <td class="col-chk"><div class="chk-box"></div></td>
+                    <td class="col-block">Vuelta Calma</td>
+                    <td class="col-ex">Estiramientos suaves</td>
+                    <td class="col-img"><span class="ex-icon cat-relax">Relax</span></td>
+                    <td class="col-sets">1</td>
+                    <td class="col-reps">5 min</td>
+                    <td class="col-rest">—</td>
+                    <td class="col-note">Hombro, bíceps, tríceps, antebrazo.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <!-- PROGRESIÓN -->
-    <section id="progresion">
-        <h2 class="day-title">Plan de Progresión Gradual</h2>
-        <div class="table-responsive">
-            <table class="progression-table">
-                <thead>
-                    <tr>
-                        <th style="width: 20%; text-align: center;">Semanas</th>
-                        <th style="width: 80%; text-align: left; padding-left: 15px;">Estrategia de Ajuste</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="text-align: center; font-weight: 700; color: var(--primary);">Semanas 1–2</td>
-                        <td><strong>Consolidación:</strong> Enfoque estricto en la técnica, control del movimiento y mantener el dolor articular al mínimo. Deja siempre un RIR (repeticiones en recámara) de 2.</td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: center; font-weight: 700; color: var(--primary);">Semanas 3–4</td>
-                        <td><strong>Sobrecarga:</strong> Incrementa la carga externa entre un 5% y un 10% únicamente si logras completar el rango alto de repeticiones de la semana anterior.</td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: center; font-weight: 700; color: var(--primary);">Semanas 5–6</td>
-                        <td><strong>Volumen:</strong> Añade 1 serie de trabajo al bloque de brazos, siempre y cuando percibas que te estás recuperando bien a nivel muscular y articular.</td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: center; font-weight: 700; color: var(--primary);">Semanas 7–8</td>
-                        <td><strong>Autorregulación:</strong> Mantén los pesos o ejecuta una fase de descarga (bajar la intensidad un 15%) si aparece fatiga acumulada en rodillas u hombros.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <!-- NUTRICIÓN -->
-    <section id="nutricion">
-        <h2 class="day-title">Nutrición: Pérdida de Grasa y Definición</h2>
-        <div class="grid-cards">
-            <div class="card nutrition">
-                <h3>⚖️ Déficit Calórico Controlado</h3>
-                <p>Para perder grasa, necesitas consumir menos calorías de las que gastas. Apunta a un déficit moderado de <strong>300 a 500 kcal diarias</strong>. Un déficit demasiado agresivo comprometerá tu masa muscular y empeorará la recuperación articular.</p>
-            </div>
-            <div class="card nutrition">
-                <h3>🥩 Alta Ingesta de Proteína</h3>
-                <p>Fundamental para retener el músculo durante el déficit. Consume entre <strong>1.8g y 2.2g de proteína por kg de peso corporal</strong>. Fuentes magras: pollo, pavo, huevos, pescado blanco, tofu, lácteos proteicos.</p>
-            </div>
-            <div class="card nutrition">
-                <h3>🐟 Grasas Antiinflamatorias</h3>
-                <p>Dado que buscas proteger tus articulaciones, prioriza alimentos ricos en <strong>Omega-3</strong>. Incluye en tu dieta salmón, sardinas, nueces, semillas de chía o lino, y aceite de oliva virgen extra. Ayudan enormemente a la lubricación articular.</p>
-            </div>
-            <div class="card nutrition">
-                <h3>💧 Hidratación y Entreno</h3>
-                <p>Bebe al menos <strong>2.5 a 3 litros de agua diarios</strong>. Si consumes carbohidratos, concéntralos preferentemente en las comidas previas y posteriores al entrenamiento para asegurar energía (rendimiento) y glucógeno (recuperación).</p>
-            </div>
-        </div>
-    </section>
+    <div class="progression-section">
+        <div class="day-title">Plan de Progresión Gradual</div>
+        <table class="progression-table">
+            <thead>
+                <tr>
+                    <th style="width: 15%; text-align: center; color: white;">Semanas</th>
+                    <th style="width: 85%; color: white;">Estrategia de Ajuste Métrica</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: center; font-weight: 600; color: #2d3748;">Semanas 1–2</td>
+                    <td><strong>Consolidación:</strong> Enfoque estricto en la técnica, control del movimiento y mantener el dolor articular al mínimo. Dejar de forma sistemática un RIR de 2.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-weight: 600; color: #2d3748;">Semanas 3–4</td>
+                    <td><strong>Sobrecarga:</strong> Incrementar la carga externa entre un 5% y un 10% únicamente si se logra completar el rango alto de repeticiones planeado.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-weight: 600; color: #2d3748;">Semanas 5–6</td>
+                    <td><strong>Volumen Accesorio:</strong> Añadir 1 serie de trabajo efectiva al bloque enfocado en brazos, condicionado siempre a percibir una correcta recuperación sistémica.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-weight: 600; color: #2d3748;">Semanas 7–8</td>
+                    <td><strong>Autorregulación:</strong> Mantener estables los pesos o ejecutar una fase deliberada de descarga articular más ligera si aparece fatiga.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 </div>
 
 </body>
 </html>
-
-```
